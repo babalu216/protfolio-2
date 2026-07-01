@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300..700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: 0 0% 5%;       /* #0C0C0C */
+    --surface: 0 0% 8%;  /* #141414 */
+    --border: 0 0% 13%;  /* #222222 */
+    --text-primary: 60 5% 96%; /* #F5F5F2 */
+    --text-muted: 60 2% 53%;   /* #8A8A85 */
+    --accent: 71 100% 50%; /* #D4FF00 */
+  }
+
+  html { 
+    scroll-behavior: smooth; 
+  }
+  
+  body {
+    @apply bg-bg text-text-primary font-body antialiased selection:bg-accent selection:text-black;
+  }
+}
+
+@layer utilities {
+  .accent-gradient {
+    background: linear-gradient(90deg, #D4FF00 0%, #AACC00 100%);
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Ensure smooth reveal animations */
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
